@@ -1,17 +1,16 @@
-name := """$name$"""
-organization := "$organization$"
+lazy val root = (project in file("."))
+  .enablePlugins(PlayScala)
+  .settings(
+    name := """$name$""",
+    organization := "$organization$",
+    version := "1.0-SNAPSHOT",
+    scalaVersion := "$scala_version$",
+    libraryDependencies += guice,
+    libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "6.0.0-M3" % Test,
 
-version := "1.0-SNAPSHOT"
+    // Adds additional packages into Twirl
+    //TwirlKeys.templateImports += "$organization$.controllers._"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala)
-
-scalaVersion := "$scala_version$"
-
-libraryDependencies += guice
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "6.0.0-M3" % Test
-
-// Adds additional packages into Twirl
-//TwirlKeys.templateImports += "$organization$.controllers._"
-
-// Adds additional packages into conf/routes
-// play.sbt.routes.RoutesKeys.routesImport += "$organization$.binders._"
+    // Adds additional packages into conf/routes
+    // play.sbt.routes.RoutesKeys.routesImport += "$organization$.binders._"
+  )
